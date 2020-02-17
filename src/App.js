@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Home from "./components/Home";
+import User from "./components/User";
+import Shop from "./components/Shop"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <header className="nav">
+                        <ul className="nav-menu">
+                            <li>
+                                <Link to="/">首页</Link>
+                            </li>
+                            <li>
+                                <Link to="/user">个人中心</Link>
+                            </li>
+                            <li>
+                                <Link to="/shop">门店</Link>
+                            </li>
+                        </ul>
+                    </header>
+                    <div className="app_content">
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/user" component={User} />
+                            <Route path="/shop" component={Shop} />
+                        </Switch>
+                    </div>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
